@@ -2,7 +2,7 @@ export const IDENTIFIER_KEY = 'intiger';
 const IDENTIFIER = new Map();
 
 export const getNextIdentifier = () => {
-  let intiger = getIdentifier() ?? 0;
+  let intiger = getIdentifier();
 
   intiger = ++intiger;
   updateIdentifier(intiger);
@@ -11,7 +11,7 @@ export const getNextIdentifier = () => {
 };
 
 export const getIdentifier = () => {
-  const identifier = IDENTIFIER.get(IDENTIFIER_KEY);
+  const identifier = IDENTIFIER.get(IDENTIFIER_KEY) ?? 0;
 
   return identifier;
 };
