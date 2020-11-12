@@ -27,17 +27,15 @@ passport.use(
     (username, password, cb) => {
       accessToken = Math.random();
 
-      cb(null, accessToken);
+      return cb(null, accessToken);
     }
   )
 );
 
 passport.use(
-  new PassportBearerStrategy((token, cb) => {
-    console.log(token, accessToken);
-
-    accessToken == token ? cb(null, token) : cb('Not Authenticated');
-  })
+  new PassportBearerStrategy((token, cb) =>
+    accessToken == token ? cb(null, token) : cb('Not Authenticated')
+  )
 );
 
 passport.use(

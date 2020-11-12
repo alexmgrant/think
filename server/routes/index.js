@@ -13,13 +13,8 @@ const {
   update: identUpdate,
 } = identifier;
 
-router.all(
-  '/identifier/*',
-  passport.authenticate('bearer'),
-  (req, res) => {
-    console.log(req.user);
-  },
-  (req, res, next) => (req.isAuthenticated() ? next() : res.redirect('/'))
+router.all('/identifier/*', passport.authenticate('bearer'), (req, res, next) =>
+  req.isAuthenticated() ? next() : res.redirect('/')
 );
 
 router.get(`${identPath}/next`, identReadNext);
