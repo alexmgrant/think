@@ -24,10 +24,6 @@ router.get(`${identPath}/next`, identReadNext);
 router.get(`${identPath}/current`, identRead);
 router.put(`${identPath}/current`, identUpdate);
 
-router.get('/', (req, res) => {
-  res.send("<a href='/auth/github'>Sign in With GitHub</a>");
-});
-
 router.post('/auth/local', passport.authenticate('local'), (req, res) => {
   const accessToken = req.user;
 
@@ -40,13 +36,25 @@ router.get('/auth/github', passport.authenticate('github'), (req, res) => {
   res.json(accessToken);
 });
 
+router.post(
+  '/login',
+  passport.authenticate(['local', 'facebook'], {
+    successReturnToOrRedirect: '/',
+    failureRedirect: '/login',
+  })
+);
+
+router.get('/login', (req, res) => {
+  res.send("<a href='/auth/github'>Sign in With GitHub</a>");
+});
+
 router.get(
   `/${process.env.GITHUB_REDIRECT}`,
   passport.authenticate('github'),
   (req, res) => {
     const { name, accessToken } = req.user;
 
-    res.send(`Hey 👋 ${name} ${accessToken}`);
+    res.json(`Hey 👋 ${name} ${accessToken}`);
   }
 );
 
