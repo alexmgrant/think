@@ -33,9 +33,11 @@ passport.use(
 );
 
 passport.use(
-  new PassportBearerStrategy((token, cb) =>
-    accessToken == token ? cb(null, token) : cb('Not Authenticated')
-  )
+  new PassportBearerStrategy((token, cb) => {
+    return accessToken == token
+      ? cb(null, token, { scope: 'all' })
+      : cb(false, { message: 'Not authenticated.' });
+  })
 );
 
 passport.use(

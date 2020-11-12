@@ -1,6 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import dotenv from 'dotenv';
+import ensureAuth from 'connect-ensure-login';
 
 import * as identifier from './routes.identifier.js';
 
@@ -13,8 +14,10 @@ const {
   update: identUpdate,
 } = identifier;
 
-router.all('/identifier/*', passport.authenticate('bearer'), (req, res, next) =>
-  req.isAuthenticated() ? next() : res.redirect('/')
+router.all(
+  '/identifier/*',
+  ensureAuth.ensureLoggedIn(['bearer', 'github']),
+  (req, res, next) => (req.isAuthenticated() ? next() : res.redirect('/'))
 );
 
 router.get(`${identPath}/next`, identReadNext);
