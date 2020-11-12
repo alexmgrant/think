@@ -6,7 +6,6 @@ import * as identifier from './routes.identifier.js';
 
 dotenv.config();
 const router = express.Router();
-
 const {
   path: identPath,
   readNext: identReadNext,
@@ -14,16 +13,37 @@ const {
   update: identUpdate,
 } = identifier;
 
+router.all('/identifier/*', passport.authenticate('bearer'), (req, res, next) =>
+  req.isAuthenticated() ? next() : res.redirect('/')
+);
+
 router.get(`${identPath}/next`, identReadNext);
 router.get(`${identPath}/current`, identRead);
 router.put(`${identPath}/current`, identUpdate);
 
-router.get('/auth/github', passport.authenticate('github'));
+router.get('/', (req, res) => {
+  res.send("<a href='/auth/github'>Sign in With GitHub</a>");
+});
+
+router.post('/auth/local', passport.authenticate('local'), (req, res) => {
+  const accessToken = req.user;
+
+  res.json(accessToken);
+});
+
+router.get('/auth/github', passport.authenticate('github'), (req, res) => {
+  const { accessToken } = req.user;
+
+  res.json(accessToken);
+});
+
 router.get(
-  process.env.GITHUB_REDIRECT,
-  passport.authenticate('github', { failureRedirect: '/login' }),
+  `/${process.env.GITHUB_REDIRECT}`,
+  passport.authenticate('github'),
   (req, res) => {
-    res.redirect('/');
+    const { name, accessToken } = req.user;
+
+    res.send(`Hey 👋 ${name} ${accessToken}`);
   }
 );
 

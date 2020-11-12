@@ -1,13 +1,13 @@
-export const IDENTIFIER_KEY = 'intiger';
+export const IDENTIFIER_KEY = 'integer';
 const IDENTIFIER = new Map();
 
 export const getNextIdentifier = () => {
-  let intiger = getIdentifier();
+  let integer = getIdentifier();
 
-  intiger = ++intiger;
-  updateIdentifier(intiger);
+  integer = ++integer;
+  updateIdentifier(integer);
 
-  return Number(intiger);
+  return Number(integer);
 };
 
 export const getIdentifier = () => {

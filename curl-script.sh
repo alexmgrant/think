@@ -7,38 +7,44 @@ nextPath="next"
 currentEndpoint="$baseUrl$currentPath"
 nexEndpoint="$baseUrl$nextPath"
 
+accessToken=$(curl -X POST http://localhost:3000/auth/local -d "email=value1&password=value2")
+echo
+
+echo "POST /auth/local"
+echo $accessToken
+
 echo "GET /current ${currentEndpoint}"
-curl $currentEndpoint 
+curl -H "Authorization:Bearer ${accessToken}" $currentEndpoint 
 echo
 
 echo "GET /next ${nexEndpoint}"
-curl $nexEndpoint
+curl -H "Authorization:Bearer ${accessToken}" $nexEndpoint
 echo
 
 echo "PUT /current ${currentEndpoint}"
-curl -d '{"intiger": 1000}' -H $headerContentType -X PUT $currentEndpoint
+curl -d '{"integer": 1000}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
 echo
 
 echo "GET /next ${nexEndpoint}"
-curl $nexEndpoint
+curl $nexEndpoint -H "Authorization:Bearer ${accessToken}"
 echo
 
 echo "PUT /current ${currentEndpoint}"
-curl -d '{"intiger": 10}' -H $headerContentType -X PUT $currentEndpoint
+curl -d '{"integer": 10}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
 echo
 
 echo "GET /next ${nexEndpoint}"
-curl $nexEndpoint
+curl $nexEndpoint -H "Authorization:Bearer ${accessToken}"
 echo
 
 echo "GET /current ${currentEndpoint}"
-curl $currentEndpoint 
+curl $currentEndpoint -H "Authorization:Bearer ${accessToken}"
 echo
 
 echo "PUT /current Invalid payload ${currentEndpoint}"
-curl -d '{"intiger": "20"}' -H $headerContentType -X PUT $currentEndpoint
+curl -d '{"integer": "20"}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
 echo
-curl -d '{"intiger": {}}' -H $headerContentType -X PUT $currentEndpoint
+curl -d '{"integer": {}}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
 echo
-curl -d '{"intiger": -300}' -H $headerContentType -X PUT $currentEndpoint
+curl -d '{"integer": -300}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
 

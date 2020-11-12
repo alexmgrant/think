@@ -7,10 +7,10 @@ import {
 import * as Idenifier from '../models/identifier.model.js';
 
 export const path = '/identifier';
-export const bodyErrorMessage = 'Expected body of type {intiger: number}';
+export const bodyErrorMessage = 'Expected body of type {integer: number}';
 const { getNextIdentifier, getIdentifier, updateIdentifier } = Idenifier;
 
-export const readNext = async (req, res) => {
+export const readNext = (req, res) => {
   const nextInteger = getNextIdentifier();
 
   res.status(200).json(nextInteger);
@@ -23,13 +23,13 @@ export const read = (req, res) => {
 };
 
 export const update = (req, res) => {
-  const { intiger } = req.body;
+  const { integer } = req.body;
 
-  if (!hasPayload(intiger) || !isNumber(intiger) || isNegativeNumber(intiger)) {
+  if (!hasPayload(integer) || !isNumber(integer) || isNegativeNumber(integer)) {
     return handlePayloadError(res)(bodyErrorMessage);
   }
 
-  updateIdentifier(intiger);
+  updateIdentifier(integer);
 
-  res.json(intiger);
+  res.json(integer);
 };
