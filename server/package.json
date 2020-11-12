@@ -2,7 +2,9 @@
   "name": "think",
   "version": "1.0.0",
   "type": "module",
-  "engines": {"node": "14.5.0"},
+  "engines": {
+    "node": "14.5.0"
+  },
   "repository": "git@github.com:alexmgrant/think.git",
   "author": "<alexmgrant@me.com>",
   "license": "MIT",
@@ -12,8 +14,13 @@
     "test": "jest --coverage"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "express": "^5.0.0-alpha.8",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-github": "^1.1.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
@@ -22,7 +29,7 @@
     "nodemon": "^2.0.6",
     "superagent": "^6.1.0",
     "supertest": "^6.0.1"
-  }, 
+  },
   "jest": {
     "collectCoverageFrom": [
       "lib/*.js",
