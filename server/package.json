@@ -20,7 +20,9 @@
     "express-session": "^1.17.1",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
-    "passport-github": "^1.1.0"
+    "passport-github": "^1.1.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
