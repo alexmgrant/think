@@ -34,6 +34,8 @@ passport.use(
 
 passport.use(
   new PassportBearerStrategy((token, cb) => {
+    console.log(token, accessToken);
+
     accessToken == token ? cb(null, token) : cb('Not Authenticated');
   })
 );

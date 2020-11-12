@@ -1,13 +1,13 @@
 #!/bin/bash
 
 headerContentType="Content-Type:application/json"
-baseUrl="http://localhost:3000/identifier/"
+baseUrl="https://think-api.herokuapp.com/identifier/"
 currentPath="current"
 nextPath="next"
 currentEndpoint="$baseUrl$currentPath"
 nexEndpoint="$baseUrl$nextPath"
 
-accessToken=$(curl -X POST http://localhost:3000/auth/local -d "email=value1&password=value2")
+accessToken=$(curl -X POST https://think-api.herokuapp.com/auth/local -d "email=value1&password=value2")
 echo
 
 echo "POST /auth/local"
