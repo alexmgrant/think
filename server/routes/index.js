@@ -16,8 +16,10 @@ const {
 
 router.all(
   '/identifier/*',
-  ensureAuth.ensureLoggedIn(['bearer', 'github']),
-  (req, res, next) => (req.isAuthenticated() ? next() : res.redirect('/'))
+  (req, res, next) => (req.isAuthenticated() ? next('route') : next()),
+  passport.authenticate('bearer'),
+  (req, res, next) =>
+    req.isAuthenticated() ? next() : res.json('Not Authenticated!')
 );
 
 router.get(`${identPath}/next`, identReadNext);
@@ -35,14 +37,6 @@ router.get('/auth/github', passport.authenticate('github'), (req, res) => {
 
   res.json(accessToken);
 });
-
-router.post(
-  '/login',
-  passport.authenticate(['local', 'facebook'], {
-    successReturnToOrRedirect: '/',
-    failureRedirect: '/login',
-  })
-);
 
 router.get('/login', (req, res) => {
   res.send("<a href='/auth/github'>Sign in With GitHub</a>");
