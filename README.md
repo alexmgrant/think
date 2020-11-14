@@ -25,7 +25,8 @@ Friday Nov 14, 2020.
 - doesn't support IE. Mainly because of `Math.sign()`
 - github and email/password auth share a token to enable bearer auth on all requests. Matching the token is done losely with (`==`) to accomodate not having a db to store a user on. (everything is session based)
 - since the app is session based (no users/db) we all share the same integer. It's a crowed sourced integer app!
-- the client is light on testing. Some of this is time saving, I know that will bite us as the app grows, but I felt the server handled most of the edge cases and I'm the only dev. 
+- the client is light on testing. Some of this is time saving, I know that will bite us as the app grows, but I felt the server handled most of the edge cases and I'm the only dev.
+- the client side app is not a compiled production build.
 
 ### Stretch goals attempted
 
