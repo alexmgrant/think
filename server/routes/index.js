@@ -1,7 +1,6 @@
 import express from 'express';
 import passport from 'passport';
 import dotenv from 'dotenv';
-import ensureAuth from 'connect-ensure-login';
 
 import * as identifier from './routes.identifier.js';
 
