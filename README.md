@@ -1,45 +1,61 @@
 # think
 
-- /next path is brital since it sets a default starting integer and only typechecked on the PUT /current endpoint 
+## Date
 
-## Notes
-
-*Please do not supply your name or email address in this document. We're doing our best to remain unbiased.*
-
-### Date
-
-The date you're submitting this.
+Friday Nov 14, 2020.
 
 ### Location of deployed application
 
-If applicable, please provide the url where we can find and interact with your running application.
+**server** [https://think-api.herokuapp.com/](https://think-api.herokuapp.com/)
+
+**client** [https://think-client.herokuapp.com/](https://think-client.herokuapp.com/)
 
 ### Time spent
 
-How much time did you spend on the assignment? Normally, this is expressed in hours.
+6-7 hrs with some distractions/exploration.
 
 ### Assumptions made
 
-Use this section to tell us about any assumptions that you made when creating your solution.
+- only positive numbers starting at 0 are accepted. no other values will work.
+- I started the count at 0. (that way the user can submit a number or start with `/next`)
 
 ### Shortcuts/Compromises made
 
-If applicable. Did you do something that you feel could have been done better in a real-world application? Please let us know.
+- the limit of the initger is not infinit. Supports what `Math.sign()` can.
+- doesn't support IE. Mainly because of `Math.sign()`
+- github and email/password auth share a token to enable bearer auth on all requests. Matching the token is done losely with (`==`) to accomodate not having a db to store a user on. (everything is session based)
+- since the app is session based (no users/db) we all share the same integer. It's a crowed sourced integer app!
+- the client is light on testing. Some of this is time saving, I know that will bite us as the app grows, but I felt the server handled most of the edge cases and I'm the only dev. 
 
 ### Stretch goals attempted
 
-If applicable, use this area to tell us what stretch goals you attempted. What went well? What do you wish you could have done better? If you didn't attempt any of the stretch goals, feel free to let us know why.
+- OAuth with Github is implemented
+- client and server are bothed hosted
+- the client logs you in, and out with 401, and consums the server. built with react
 
 ### Instructions to run assignment locally
 
-If applicable, please provide us with the necessary instructions to run your solution.
+**client**
+
+- yarn install
+- yarn start
+- yarn test
+
+**server**
+
+- yarn install
+- yarn start
+- yarn test
+- bash curl-script.sh 👈 used by me to test server with curl durig dev (uses remote server, but can be pointed to http://localhost:3000)
 
 ### What did you not include in your solution that you want us to know about?
 
-Were you short on time and not able to include something that you want us to know about? Please list it here so that we know that you considered it.
+- more client side testing
 
 ### Other information about your submission that you feel it's important that we know if applicable.
 
+  I did some experimenting with server side rendered react for the client. I moved away from it as I felt the implementations I was finding was to big a refactor at the time or would have required me to bind the single page app via handlebars to the DOM, which seemed flaky to me.
+
 ### Your feedback on this technical challenge
 
-Have feedback for how we could make this assignment better? Please let us know.
+I enjoyed it! 

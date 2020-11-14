@@ -3,7 +3,7 @@ import React, { FormEvent, useState, useEffect } from 'react';
 import Card from '../components/card/Card';
 import Button from '../components/button/Button';
 import { getEventValue, emptyString } from '../common/Utils';
-import { AUTH_GITHUB, API_URL, authLogin } from '../common/ApiUtils';
+import { AUTH_GITHUB, API_URL, authLocal } from '../common/ApiUtils';
 
 const search = window.location.search;
 const params = new URLSearchParams(search);
@@ -22,11 +22,12 @@ const Login = (props: { setJwt: Function }) => {
   useEffect(() => {
     if (paramToken && !emptyString(paramToken as string))
       setToken(paramToken as string);
+    // eslint-disable-next-line
   }, []);
 
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
-    const response = await authLogin({ email, password });
+    const response = await authLocal({ email, password });
     const token = response.data;
 
     setToken(token);

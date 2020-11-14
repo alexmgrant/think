@@ -8,8 +8,8 @@ exports[`should render Login 1`] = `
         <p>Email</p><input placeholder=\\"Any value\\" type=\\"text\\" value=\\"\\">
       </label><label>
         <p>Password</p><input placeholder=\\"Any value\\" type=\\"password\\" value=\\"\\">
-      </label><button class=\\"Button\\" type=\\"submit\\" disabled=\\"\\">Login</button></form>
-    <p>Or...</p><a href=\\"http://localhost:3000/auth/github\\"><button class=\\"Button\\" type=\\"button\\">Login with Github<img src=\\"/octocat.png\\" alt=\\"Github Octocat\\"></button></a>
+      </label><button class=\\"Button\\" type=\\"submit\\">Login</button></form>
+    <p>Or...</p><a href=\\"https://think-api.herokuapp.com/auth/github\\"><button class=\\"Button\\" type=\\"button\\">Login with Github<img src=\\"/octocat.png\\" alt=\\"Github Octocat\\"></button></a>
   </section>
 </section>"
 `;

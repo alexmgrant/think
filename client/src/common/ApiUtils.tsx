@@ -36,8 +36,8 @@ restApi.interceptors.response.use(
   }
 );
 
-const authLogin = async (payload: { email: string; password: string }) =>
-  restApi.post(AUTH_LOCAL, payload);
+const authLocal = async (payload: { email: string; password: string }) =>
+  await restApi.post(AUTH_LOCAL, payload);
 
 const authGithub = async () => await restApi.get(AUTH_GITHUB);
 
@@ -45,11 +45,11 @@ const getIdentifier = async () => await restApi.get(CURRENT);
 
 const getNextIdentifier = async () => await restApi.get(NEXT);
 
-const updateIdentifier = async (payload: { intiger: number }) =>
+const updateIdentifier = async (payload: { integer: number }) =>
   await restApi.put(CURRENT, payload);
 
 export {
-  authLogin,
+  authLocal,
   authGithub,
   getIdentifier,
   getNextIdentifier,

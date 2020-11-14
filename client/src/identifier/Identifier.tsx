@@ -34,6 +34,7 @@ const Identifier = () => {
 
   useEffect(() => {
     handleSetIdentifier(getIdentifier);
+    // eslint-disable-next-line
   }, [setIdentifier]);
 
   return (

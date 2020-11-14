@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Identifier 1`] = `
+"<div class=\\"App\\">
+  <section class=\\"Card\\">
+    <h4>👋 Hey!</h4>
+    <form><label>
+        <p>Current identifier</p><input type=\\"text\\" value=\\"\\">
+      </label><br><button class=\\"Button\\" type=\\"submit\\">Update Identifier</button><br></form><button class=\\"Button\\" type=\\"button\\">Next Identifier</button>
+  </section>
+</div>"
+`;
