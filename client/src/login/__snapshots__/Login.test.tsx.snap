@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Login 1`] = `
+"<section>
+  <section class=\\"Card\\">
+    <h4>👋 Hey! you need to login.</h4>
+    <form><label>
+        <p>Email</p><input type=\\"text\\" value=\\"\\">
+      </label><label>
+        <p>Password</p><input type=\\"password\\" value=\\"\\">
+      </label><button class=\\"Button\\" type=\\"submit\\" disabled=\\"\\">Login</button></form>
+    <p>Or...</p><button class=\\"Button\\" type=\\"button\\">Login with Github<img src=\\"/octocat.png\\" style=\\"width: 25px;\\" alt=\\"Github Octocat\\"></button>
+  </section>
+</section>"
+`;

@@ -6,6 +6,7 @@ import passportHttpBearer from 'passport-http-bearer';
 import session from 'express-session';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import routes from './routes/index.js';
 
@@ -68,6 +69,8 @@ passport.deserializeUser((auth, cb) => {
 
 const app = express();
 
+app.use(cors());
+app.options('*', cors());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

@@ -1,0 +1,30 @@
+.Button {
+  display: flex;
+  align-items: center;
+  background-color: #100d59;
+  color: #fff;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.03125rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.Button:hover {
+  background-color: #5668c7;
+  color: #fff;
+}
+
+.Button:disabled {
+  background-color: #f2f3f5;
+}
+
+.Button img {
+  width: 28px;
+}

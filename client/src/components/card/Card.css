@@ -1,0 +1,11 @@
+.Card {
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  position: relative;
+  padding: 16px 12px 24px;
+  max-width: 500px;
+  margin-right: auto;
+  margin-bottom: 16px;
+  margin-left: auto;
+}

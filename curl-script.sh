@@ -1,7 +1,7 @@
 #!/bin/bash
 
 headerContentType="Content-Type:application/json"
-baseUrl="https://think-api.herokuapp.com/identifier/"
+baseUrl="https://think-api.herokuapp.com/identifier/" #http://localhost:3000/
 currentPath="current"
 nextPath="next"
 currentEndpoint="$baseUrl$currentPath"
