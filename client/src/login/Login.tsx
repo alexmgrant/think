@@ -1,34 +1,35 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 
 import Card from '../components/card/Card';
 import Button from '../components/button/Button';
-import { getEventValue } from '../common/Utils';
-import {
-  AUTH_GITHUB,
-  API_URL,
-  authLogin,
-  authGithub,
-} from '../common/ApiUtils';
+import { getEventValue, emptyString } from '../common/Utils';
+import { AUTH_GITHUB, API_URL, authLogin } from '../common/ApiUtils';
 
-const handleGithubAuth = () => {
-  authGithub();
-};
-
-const emptyString = (string: string): boolean => string === '';
+const search = window.location.search;
+const params = new URLSearchParams(search);
+const paramToken = params.get('token');
 
 const Login = (props: { setJwt: Function }) => {
   const { setJwt } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const inputsValid = !(!emptyString(email) && !emptyString(password));
+  const setToken = (token: string) => {
+    setJwt(token);
+    localStorage.setItem('token', token);
+  };
+
+  useEffect(() => {
+    if (paramToken && !emptyString(paramToken as string))
+      setToken(paramToken as string);
+  }, []);
 
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
     const response = await authLogin({ email, password });
     const token = response.data;
 
-    setJwt(token);
-    localStorage.setItem('token', token);
+    setToken(token);
   };
 
   return (

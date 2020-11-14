@@ -3,7 +3,7 @@ import axios from 'axios';
 const AUTH = 'auth/';
 const IDENTIFIER = 'identifier/';
 
-export const API_URL = 'https://think-api.herokuapp.com/'; //http:localhost:3000/
+export const API_URL = 'https://think-api.herokuapp.com/'; //http://localhost:3000/
 export const AUTH_LOCAL = `${AUTH}local`;
 export const AUTH_GITHUB = `${AUTH}github`;
 export const NEXT = `${IDENTIFIER}next`;
@@ -22,6 +22,18 @@ restApi.interceptors.request.use(
     return config;
   },
   (error) => Promise.reject(error)
+);
+
+restApi.interceptors.response.use(
+  (response: any) => response,
+  (error) => {
+    if (401 === error.response.status) {
+      localStorage.removeItem('token');
+      window.location.href = '/';
+    } else {
+      return Promise.reject(error);
+    }
+  }
 );
 
 const authLogin = async (payload: { email: string; password: string }) =>

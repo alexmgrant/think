@@ -12,13 +12,6 @@ body {
   padding: 25% 20px 20px 20px;
 }
 
-.Input {
-  height: 40px;
-  padding: 8px 12px;
-  border-color: #caccd6;
-  color: #36394d;
-}
-
 input {
   display: inline-block;
   font-size: 0.875rem;
@@ -38,4 +31,8 @@ input {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
 }

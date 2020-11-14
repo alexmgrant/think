@@ -7,16 +7,17 @@ import {
   getNextIdentifier,
   updateIdentifier,
 } from '../common/ApiUtils';
-import { getEventValue } from '../common/Utils';
+import { getEventValue, curry } from '../common/Utils';
 
-const handleUpdateIdentifier = (updateStateFn: Function) => (
-  apiFn: Function
-) => (args: any = undefined) => {
-  return (async () => {
-    const response = await apiFn(args);
-    updateStateFn(response.data);
-  })();
-};
+const updateStateFromApi = curry(
+  (updateStateFn: Function, apiFn: Function, payload: any = undefined) => {
+    return (async () => {
+      const response = await apiFn(payload);
+      updateStateFn(response.data);
+    })();
+  }
+);
+
 const handleInputValue = (updateStateFn: Function) => (event: any) => {
   const inputValue = getEventValue(event);
   updateStateFn(isNaN(+inputValue) ? inputValue : +inputValue);
@@ -25,15 +26,15 @@ const handleInputValue = (updateStateFn: Function) => (event: any) => {
 const Identifier = () => {
   const [identifier, setIdentifier] = useState('');
   const setInputIdentifierValue = handleInputValue(setIdentifier);
-  const handleSetIdentifier = handleUpdateIdentifier(setIdentifier);
+  const handleSetIdentifier = updateStateFromApi(setIdentifier);
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
-    handleSetIdentifier(updateIdentifier)({ integer: Number(identifier) });
+    handleSetIdentifier(updateIdentifier, { integer: Number(identifier) });
   };
 
   useEffect(() => {
-    handleSetIdentifier(getIdentifier)();
-  }, []);
+    handleSetIdentifier(getIdentifier);
+  }, [setIdentifier]);
 
   return (
     <div className="App">
@@ -52,7 +53,7 @@ const Identifier = () => {
           <Button type="submit">Update Identifier</Button>
           <br />
         </form>
-        <Button onClick={() => handleSetIdentifier(getNextIdentifier)()}>
+        <Button onClick={() => handleSetIdentifier(getNextIdentifier)}>
           Next Identifier
         </Button>
       </Card>

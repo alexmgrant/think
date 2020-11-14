@@ -5,11 +5,11 @@ exports[`should render Login 1`] = `
   <section class=\\"Card\\">
     <h4>👋 Hey! you need to login.</h4>
     <form><label>
-        <p>Email</p><input type=\\"text\\" value=\\"\\">
+        <p>Email</p><input placeholder=\\"Any value\\" type=\\"text\\" value=\\"\\">
       </label><label>
-        <p>Password</p><input type=\\"password\\" value=\\"\\">
+        <p>Password</p><input placeholder=\\"Any value\\" type=\\"password\\" value=\\"\\">
       </label><button class=\\"Button\\" type=\\"submit\\" disabled=\\"\\">Login</button></form>
-    <p>Or...</p><button class=\\"Button\\" type=\\"button\\">Login with Github<img src=\\"/octocat.png\\" style=\\"width: 25px;\\" alt=\\"Github Octocat\\"></button>
+    <p>Or...</p><a href=\\"http://localhost:3000/auth/github\\"><button class=\\"Button\\" type=\\"button\\">Login with Github<img src=\\"/octocat.png\\" alt=\\"Github Octocat\\"></button></a>
   </section>
 </section>"
 `;
