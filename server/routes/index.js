@@ -49,6 +49,7 @@ router.get(
     const { name, accessToken } = req.user;
 
     res.json(`Hey 👋 ${name} ${accessToken}`);
+    res.redirect('https://think-client.herokuapp.com/');
   }
 );
 
