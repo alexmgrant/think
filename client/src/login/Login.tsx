@@ -3,7 +3,12 @@ import React, { FormEvent, useState } from 'react';
 import Card from '../components/card/Card';
 import Button from '../components/button/Button';
 import { getEventValue } from '../common/Utils';
-import { authLogin, authGithub } from '../common/ApiUtils';
+import {
+  AUTH_GITHUB,
+  API_URL,
+  authLogin,
+  authGithub,
+} from '../common/ApiUtils';
 
 const handleGithubAuth = () => {
   authGithub();
@@ -36,6 +41,7 @@ const Login = (props: { setJwt: Function }) => {
             <input
               value={email}
               onInput={(event) => setEmail(getEventValue(event))}
+              placeholder="Any value"
               type="text"
             />
           </label>
@@ -44,6 +50,7 @@ const Login = (props: { setJwt: Function }) => {
             <input
               value={password}
               onInput={(event) => setPassword(getEventValue(event))}
+              placeholder="Any value"
               type="password"
             />
           </label>
@@ -52,13 +59,15 @@ const Login = (props: { setJwt: Function }) => {
           </Button>
         </form>
         <p>Or...</p>
-        <Button onClick={handleGithubAuth}>
-          Login with Github
-          <img
-            src={`${process.env.PUBLIC_URL}/octocat.png`}
-            alt="Github Octocat"
-          />
-        </Button>
+        <a href={`${API_URL}${AUTH_GITHUB}`}>
+          <Button>
+            Login with Github
+            <img
+              src={`${process.env.PUBLIC_URL}/octocat.png`}
+              alt="Github Octocat"
+            />
+          </Button>
+        </a>
       </Card>
     </section>
   );
