@@ -34,8 +34,10 @@ const Identifier = () => {
 
   useEffect(() => {
     handleSetIdentifier(getIdentifier);
-    // eslint-disable-next-line
-  }, [setIdentifier]);
+  }, [setIdentifier]); // eslint-disable-line react-hooks/exhaustive-deps
+  // handleSetIdentifier is shared between update and read CRUD operations & depends on Comp state value
+  // here we're updating identifier Comp state from the API once PUT is called.
+  // perhaps breaking these functions out would be better then this comment.
 
   return (
     <div className="App">

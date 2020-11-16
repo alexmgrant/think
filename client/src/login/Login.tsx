@@ -22,8 +22,8 @@ const Login = (props: { setJwt: Function }) => {
   useEffect(() => {
     if (paramToken && !emptyString(paramToken as string))
       setToken(paramToken as string);
-    // eslint-disable-next-line
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // Only need to run this on Component render
 
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
