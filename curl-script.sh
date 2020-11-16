@@ -37,9 +37,22 @@ echo "GET /next ${nexEndpoint}"
 curl $nexEndpoint -H "Authorization:Bearer ${accessToken}"
 echo
 
+echo "PUT /current ${currentEndpoint}"
+curl -d '{"integer": -0}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
+echo
+
 echo "GET /current ${currentEndpoint}"
 curl $currentEndpoint -H "Authorization:Bearer ${accessToken}"
 echo
+
+echo "PUT /current ${currentEndpoint}"
+curl -d '{"integer": 0}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
+echo
+
+echo "GET /current ${currentEndpoint}"
+curl $currentEndpoint -H "Authorization:Bearer ${accessToken}"
+echo
+
 
 echo "PUT /current Invalid payload ${currentEndpoint}"
 curl -d '{"integer": "20"}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
@@ -47,4 +60,5 @@ echo
 curl -d '{"integer": {}}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
 echo
 curl -d '{"integer": -300}' -H $headerContentType -H "Authorization:Bearer ${accessToken}" -X PUT $currentEndpoint
+
 

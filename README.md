@@ -18,6 +18,7 @@ Friday Nov 14, 2020.
 
 - only positive numbers starting at 0 are accepted. no other values will work.
 - I started the count at 0. (that way the user can submit a number or start with `/next`)
+- `-0` will set the identifier to 0. I consider it a happy path for the user.
 
 ### Shortcuts/Compromises made
 
